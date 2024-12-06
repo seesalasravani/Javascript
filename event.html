@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 onclick="demo()" ondblclick="demo1()" onmouseover="demo2()" id="head1">hello</h1>
+    <p id="p1"></p>
+   <!-- <button id="btn" onmousedown="sample()">clickme</button>-->
+    <button id="btn">click</button>
+    <script>
+       
+        function demo2(){
+            let head1=document.getElementById("head1");
+            head1.style.fontSize="120px";
+        }
+        function demo(){
+            let head1=document.getElementById("head1");
+            head1.style.color="red";
+            let p1=document.getElementById("p1");
+            p1.innerHTML="hello world";
+        }
+        function demo1(){
+            let head1=document.getElementById("head1");
+            head1.style.backgroundColor="blue";
+
+        }
+        //function sample(){
+           //let btn=document.getElementById("btn");
+           // btn.style.color="red";
+           
+        //}
+        let btn=document.getElementById("btn");
+        btn.addEventListener("dblclick",function(){
+            let btn=document.getElementById("btn");
+            btn.style.backgroundColor="red";
+
+        })
+        btn.addEventListener("click",()=>{
+            document.body.style.backgroundColor="yellow"
+        })
+
+        
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+
+const calculator = document.createElement('div');
+calculator.style.width = '200px';
+calculator.style.margin = '50px auto';
+calculator.style.padding = '20px';
+calculator.style.border = '1px solid #ccc';
+calculator.style.borderRadius = '10px';
+calculator.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.1)';
+
+
+const display = document.createElement('input');
+display.type = 'text';
+display.style.width = '100%';
+display.style.height = '40px';
+display.style.padding = '10px';
+display.style.border = 'none';
+display.style.borderRadius = '10px';
+display.style.fontSize = '24px';
+display.style.textAlign = 'right';
+display.disabled = true;
+
+
+const keys = document.createElement('div');
+keys.style.display = 'grid';
+keys.style.gridTemplateColumns = 'repeat(4, 1fr)';
+keys.style.gap = '10px';
+
+
+const keysArray = [
+  { text: '7', onclick: () => pressKey('7') },
+  { text: '8', onclick: () => pressKey('8') },
+  { text: '9', onclick: () => pressKey('9') },
+  { text: '/', onclick: () => pressKey('/') },
+  { text: '4', onclick: () => pressKey('4') },
+  { text: '5', onclick: () => pressKey('5') },
+  { text: '6', onclick: () => pressKey('6') },
+  { text: '*', onclick: () => pressKey('*') },
+  { text: '1', onclick: () => pressKey('1') },
+  { text: '2', onclick: () => pressKey('2') },
+  { text: '3', onclick: () => pressKey('3') },
+  { text: '-', onclick: () => pressKey('-') },
+  { text: '0', onclick: () => pressKey('0') },
+  { text: '.', onclick: () => pressKey('.') },
+  { text: '=', onclick: () => pressKey('=') },
+  { text: 'C', onclick: clearDisplay },
+];
+
+keysArray.forEach((key) => {
+  const button = document.createElement('button');
+  button.textContent = key.text;
+  button.style.padding = '10px';
+  button.style.border = 'none';
+  button.style.borderRadius = '10px';
+  button.style.cursor = 'pointer';
+  button.onclick = key.onclick;
+  keys.appendChild(button);
+});
+
+
+document.body.appendChild(calculator);
+calculator.appendChild(display);
+calculator.appendChild(keys);
+
+
+function pressKey(key) {
+  if (key === '=') {
+    try {
+      display.value = eval(display.value);
+    } catch (e) {
+      display.value = 'Error';
+    }
+  } else {
+    display.value += key;
+  }
+}
+
+function clearDisplay() {
+  display.value = '';
+}
+
+
+
+
+    </script>
+    
+</body>
+</html>

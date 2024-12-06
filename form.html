@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="demo(event)">
+        <input type="text" id="ip1">
+        <input type="text" id="ip2">
+        <input type="submit">
+    </form>
+    <p></p>
+    <script>
+        function demo(event){
+            event.preventDefault();
+            let p=document.getElementsByTagName("p");
+            let ip1=document.getElementById("ip1");
+            let ip2=document.getElementById("ip2")
+            p[0].innerHTML=ip1.value+ip2.value;
+            
+        }
+    </script>
+
+    
+</body>
+</html>

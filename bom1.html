@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="page1">page1</button>
+    <button id="page2">page2</button>
+    <button id="page3">page3</button>
+    <button id="back">back</button>
+    <button id="forward">forward</button>
+    <script>
+        let page1=document.getElementById("page1")
+        let page2=document.getElementById("page2")
+        let page3=document.getElementById("page3")
+        let back=document.getElementById("back")
+        let forward=document.getElementById("forward")
+        page1.addEventListener("click",()=>{
+            location.assign("./bom2.html")
+        })
+    </script>
+    
+</body>
+</html>

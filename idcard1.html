@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+    <input type="submit">
+    </form>
+    <p class="myclass">name:</p>
+    <p class="myclass">age:</p>
+    <p class="myclass">location</p>
+    <p class="myclass">bloodgroup</p>
+    <p class="myclass">qualification</p>
+    <script>
+       let form=document.getElementsByTagName("form");
+       form[0].addEventListener("submit",()=>{
+        let p=document.getElementsByClassName("myclass")
+        p[0].innerHTML="name"
+        console.log(p[0])
+       })
+    </script>
+    
+</body>
+</html>

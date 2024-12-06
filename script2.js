@@ -1,0 +1,10 @@
+var a=10;
+console.log(b);
+let a=10;
+console.log(a+b);
+var b=20;
+const a=10;
+a=20;
+console.log(a);
+console.log(typeof NaN);
+console.log(typeof undefined);

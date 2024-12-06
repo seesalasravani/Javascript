@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+#birthday-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#birthday-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+#birthday-list li:last-child {
+    border-bottom: none;
+}
+
+.countdown {
+    font-weight: bold;
+    color:green;
+}
+
+.upcoming {
+    background-color: yellow;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Birthday Reminder App</h1>
+        <form id="add-birthday-form">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="date">Date of Birth:</label>
+                <input type="date" id="date" class="form-control">
+            </div>
+            <button class="btn btn-primary" id="add-birthday-btn">Add Birthday</button>
+        </form>
+        <h2>Birthday List:</h2>
+        <ul id="birthday-list" class="list-group"></ul>
+    </div>
+    <script>
+        // Get elements
+const addBirthdayForm = document.getElementById('add-birthday-form');
+const birthdayList = document.getElementById('birthday-list');
+        
+// Initialize birthday data
+let birthdays = JSON.parse(localStorage.getItem('birthdays')) || [];
+
+// Function to add birthday
+function addBirthday(name, date) {
+    const birthday = { name, date };
+    birthdays.push(birthday);
+    localStorage.setItem('birthdays', JSON.stringify(birthdays));
+    updateBirthdayList();
+}
+
+// Function to update birthday list
+function updateBirthdayList() {
+    birthdayList.innerHTML = '';
+    birthdays.forEach((birthday, index) => {
+        const li = document.createElement('li');
+        li.classList.add('list-group-item');
+        li.innerHTML = `
+            ${birthday.name} - ${birthday.date}
+            <span class="countdown"></span>
+            <button class="btn btn-sm btn-danger" onclick="deleteBirthday(${index})">Delete</button>
+            <button class="btn btn-sm btn-info" onclick="editBirthday(${index})">Edit</button>
+        `;
+        birthdayList.appendChild(li);
+        const countdownSpan = li.querySelector('.countdown');
+        const countdown = calculateCountdown(birthday.date);
+        countdownSpan.textContent = countdown;
+        if (countdown <= 7) {
+            li.classList.add('upcoming');
+        }
+    });
+}
+
+// Function to calculate countdown
+function calculateCountdown(date) {
+    const birthdayDate = new Date(date);
+    const today = new Date();
+    const difference = birthdayDate.getTime() - today.getTime();
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    return days;
+}
+
+// Function to delete birthday
+function deleteBirthday(index) {
+    birthdays.splice(index, 1);
+    localStorage.setItem('birthdays', JSON.stringify(birthdays));
+    updateBirthdayList();
+}
+
+// Function to edit birthday
+function editBirthday(index) {
+    const birthday = birthdays[index];
+    const name = prompt('Enter new name:', birthday.name);
+    const date = prompt('Enter new date:', birthday.date);
+    birthday.name = name;
+    birthday.date = date;
+    localStorage.setItem('birthdays', JSON.stringify(birthdays));
+    updateBirthdayList();
+}
+
+// Add event listener to form
+addBirthdayForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const date = document.getElementById('date').value;
+    addBirthday(name, date);
+    addBirthdayForm.reset();
+});
+
+// Update birthday list on page load
+updateBirthdayList();
+
+// Set interval to update countdown every second
+setInterval(() => {
+    updateBirthdayList();
+}, 1000);
+
+
+    </script>
+    
+</body>
+</html>

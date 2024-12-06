@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">clickme</button>
+    <p id="p1"></p>
+    <script>
+      let button = document.getElementById("btn");
+      let p = document.getElementById("p1");
+      button.addEventListener("click",()=>{
+        let p=localStorage.getItem("name");
+        p1.innerHTML=p
+      });
+    </script>
+  </body>
+</html>

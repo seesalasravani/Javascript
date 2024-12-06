@@ -1,0 +1,12 @@
+//console.log(true||true);
+console.log(false||false);
+console.log(true||false);
+console.log(false||true);
+console.log(true&&true);
+console.log(false&&false);
+console.log(true&&false);
+console.log(false&&true);
+console.log(true||"hello");
+console.log(true||hello);
+console.log(false||"hello");
+//console.log(false||hello);

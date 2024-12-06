@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#birthday-form {
+    margin-bottom: 20px;
+}
+
+#countdown-container {
+    font-size: 24px;
+    font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <h1>Birthday Reminder</h1>
+    <form id="birthday-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <label for="birthday">Birthday (MM/DD/YYYY):</label>
+        <input type="date" id="birthday" required>
+        <button id="submit-btn">Submit</button>
+    </form>
+    <div id="countdown-container">
+        <h2 id="countdown"></h2>
+    </div>
+    <script>
+        const form = document.getElementById('birthday-form');
+const countdownContainer = document.getElementById('countdown-container');
+const countdownElement = document.getElementById('countdown');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const birthday = document.getElementById('birthday').value;
+    const birthdayDate = new Date(birthday);
+
+    // Calculate countdown
+    const now = new Date();
+    const nextBirthday = new Date(birthdayDate.getFullYear() + 1, birthdayDate.getMonth(), birthdayDate.getDate());
+    if (now > nextBirthday) {
+        nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+    }
+    const countdown = Math.floor((nextBirthday - now) / (1000 * 60 * 60 * 24));
+
+    // Display countdown
+    countdownContainer.style.display = 'block';
+    countdownElement.textContent = `${name}'s birthday is in ${countdown} days`;
+
+    // Set reminder
+    setTimeout(() => {
+        alert(`Happy birthday, ${name}!`);
+    }, (nextBirthday - now));
+});
+
+
+    </script>
+    
+</body>
+</html>

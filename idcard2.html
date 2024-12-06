@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #id-card {
+      display: none;
+      border: 1px solid #ddd;
+      padding: 20px;
+      width: 300px;
+      background-color: pink;
+    }
+    </style>
+</head>
+<body>
+    <form id="id-card-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+        <label for="qualification">qualification:</label>
+        <input type="qualification" id="qualification" name="qualification"><br><br>
+        <label for="bloodgroup">bloodgroup:</label>
+        <input type="bloodgroup" id="bloodgroup" name="bloodgroup"><br><br>
+        <label for="address">address:</label>
+        <input type="address" id="address" name="address"><br><br>
+        <input type="submit" value="Submit">
+        </form>
+        <div id="id-card">
+            <h2>ID Card</h2>
+            <p id="name-display"></p>
+            <p id="age-display"></p>
+            <p id="email-display"></p>
+            <p id="qualification-display"></p>
+            <p id="bloodgroup-display"></p>
+            <p id="address-display"></p>
+          </div>
+          <script>
+            document.getElementById('id-card-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent default form submission
+  
+  const name = document.getElementById('name').value;
+  const age = document.getElementById('age').value;
+  const email = document.getElementById('email').value;
+  const qualification = document.getElementById('qualification').value;
+  const bloodgroup = document.getElementById('bloodgroup').value;
+  const address = document.getElementById('address').value;
+  
+  document.getElementById('name-display').innerHTML = `Name: ${name}`;
+  document.getElementById('age-display').innerHTML = `Age: ${age}`;
+  document.getElementById('email-display').innerHTML = `Email: ${email}`;
+  document.getElementById('qualification-display').innerHTML = `qualification: ${qualification}`;
+  document.getElementById('bloodgroup-display').innerHTML = `bloodgroup: ${bloodgroup}`;
+  document.getElementById('address-display').innerHTML = `Email: ${address}`;
+  
+  
+  
+  
+  document.getElementById('id-card').style.display = 'block'; // Display ID card
+});
+          </script>
+    
+</body>
+</html>
